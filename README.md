@@ -1,4 +1,6 @@
-# try-it-on
+# try-it
+
+Simple test of the stability.ai api 
 
 ## Setup
 
