@@ -1,6 +1,6 @@
 # try-it
 
-Simple test of the stability.ai api 
+Simple test of the stability.ai api
 
 ## Setup
 
@@ -8,4 +8,10 @@ Simple test of the stability.ai api
 conda create -n try-it-on python=3.11
 conda activate try-it-on
 pip install -r requirements.txt
+```
+
+## Running
+
+```
+python main.py <path to image> <prompt>
 ```
