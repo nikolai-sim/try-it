@@ -16,9 +16,9 @@ if API_KEY is None:
     raise Exception("Missing Stability API key.")
 
 def main():
-    parser = argparse.ArgumentParser(description="Merge two images using Stability AI API")
-    parser.add_argument('image1', type=str, help="Path to the first image")
-    parser.add_argument('image2', type=str, help="Path to the second image")
+    parser = argparse.ArgumentParser(description="Edit an input image with a prompt")
+    parser.add_argument('image1', type=str, help="Path to the image")
+    parser.add_argument('prompt', type=str, help="Text prompt for the image generation")
     args = parser.parse_args()
 
     # Define the API endpoint and headers
@@ -30,15 +30,17 @@ def main():
 
     # Create the payload
     files = {
-        'init_image': open(args.image1, 'rb')
+        'init_image': open(args.image1, 'rb'),
     }
     data = {
-        "image_strength": 0.75,
+        "image_strength": 0.35,
         "init_image_mode": "IMAGE_STRENGTH",
-        "text_prompts[0][text]": "Combine the two images so that the image of the person is wearing the sunglasses in the second image",
-        "cfg_scale": 7,
-        "samples": 1,
-        "steps": 50,
+        "text_prompts[0][text]": args.prompt,
+        "text_prompts[0][weight]": 1,
+        "cfg_scale": 15,
+        "samples": 10,
+        "steps": 10,
+        "style_preset": "photographic"
     }
 
     # Make the request
